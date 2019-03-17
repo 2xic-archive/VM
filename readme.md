@@ -6,17 +6,23 @@ Includes code for an assembler for a assembly like language and a VM to run the 
 
 ##  Instruction encoding
 Instructions are encoded as 2 bytes. Mainly like the way described in the table below. 
-| 4 bit       | 4 bit           	| 4 bit  	| 4 bit  |
-| ------------- 	|:-------------:		| :-----:		| :----------:| 
-| **instruction id**      		| register or integer				| register 	or integer	| register	or integer
+
+| 4 bit      		 	| 4 bit           		| 4 bit  				| 4 bit  |
+| ------------- 		|:-------------:		| :-----:				| :----------:| 
+| **instruction id**     | register or integer	| register 	or integer	| register	or integer
+
 Obviously if the instruction doesn't require 3 arguments the last bits will be zero. Some instructions are special like the **jmp**, it requires that another 16 bit is fetched (if the jump location isn’t at PC=0). Meaning that the VM first will read the instruction
-| 4 bit       | 4 bit           	| 4 bit  	| 4 bit  |
-| ------------- 	|:-------------:		| :-----:		| :----------:| 
-| **jmp**      		| 0				| 0 		| 0	  
+
+| 4 bit       		| 4 bit           	| 4 bit  	| 4 bit  		|
+| ------------- 	|:-------------:	| :-------:	| :----------:	| 
+| **jmp**      		| 0					| 0 		| 0	  			|
+
 then it will fetch the next instruction with the location.
-| 16 bit  |
-| ------------- | 
+
+| 16 bit  					|
+| ---------------- 			| 
 | **jmp location**      	|
+
 **push** works the same way if the value pushed onto the stack is greater than 8 bits. 
 
 ## Instruction set
